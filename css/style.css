@@ -1,0 +1,393 @@
+/* ============================================================
+   style.css — Tema escuro "tech"
+   Paleta: fundo azul-petróleo profundo, acentos em ciano e verde neon
+   ============================================================ */
+
+/* ---------- Variáveis ---------- */
+:root {
+    --bg: #0b0f19;
+    /* fundo principal */
+    --bg-elevated: #111827;
+    /* cards / seções */
+    --bg-input: #0f1523;
+    /* campos de formulário */
+    --border: #1f2a3d;
+    --border-strong: #2d3b55;
+
+    --text: #e5e9f0;
+    --text-muted: #8b95a8;
+
+    --accent: #22d3ee;
+    /* ciano */
+    --accent-2: #4ade80;
+    /* verde neon */
+    --accent-glow: rgba(34, 211, 238, 0.35);
+
+    --radius: 10px;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+
+    --font: "Inter", "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+    --font-mono: "JetBrains Mono", "Fira Code", Consolas, monospace;
+}
+
+/* ---------- Reset básico ---------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: var(--font);
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--text);
+    background-color: var(--bg);
+    /* brilhos coloridos + grade sutil ao fundo, estilo "circuito" */
+    background-image:
+        radial-gradient(circle at 20% 0%, rgba(34, 211, 238, 0.10), transparent 40%),
+        radial-gradient(circle at 80% 100%, rgba(74, 222, 128, 0.08), transparent 40%),
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    background-size: auto, auto, 40px 40px, 40px 40px;
+    background-attachment: fixed;
+}
+
+/* ---------- Cabeçalho ---------- */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 2rem;
+    background: rgba(11, 15, 25, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+}
+
+header strong {
+    justify-self: start;
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+header figure {
+    justify-self: center;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header figcaption {
+    margin-top: 0.25rem;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+}
+
+header span {
+    justify-self: end;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    padding: 0.25rem 0.75rem;
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+/* ---------- Conteúdo principal ---------- */
+main {
+    max-width: 1100px;
+    margin: 2.5rem auto;
+    padding: 0 1.5rem;
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    gap: 1.5rem;
+}
+
+section,
+aside,
+article,
+fieldset {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+}
+
+section {
+    grid-column: 1;
+}
+
+aside {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: start;
+    border-left: 3px solid var(--accent-2);
+}
+
+article {
+    margin-top: 1.25rem;
+    background: var(--bg-input);
+}
+
+main footer {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 1rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    border-top: 1px solid var(--border);
+}
+
+/* ---------- Títulos e texto ---------- */
+h2 {
+    margin: 0 0 0.75rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #fff;
+    position: relative;
+    padding-left: 0.85rem;
+}
+
+/* barra de acento à esquerda do título */
+h2::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.25em;
+    bottom: 0.25em;
+    width: 3px;
+    border-radius: 2px;
+    background: linear-gradient(180deg, var(--accent), var(--accent-2));
+}
+
+article h2 {
+    font-size: 1.15rem;
+}
+
+p {
+    margin: 0 0 0.75rem;
+    color: var(--text-muted);
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
+
+/* ---------- Vídeo (iframe) ---------- */
+iframe {
+    display: block;
+    width: 100%;
+    max-width: 560px;
+    aspect-ratio: 16 / 9;
+    height: auto;
+    margin-top: 1rem;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius);
+    box-shadow: 0 0 25px var(--accent-glow);
+}
+
+/* ---------- Formulário ---------- */
+form {
+    max-width: 1100px;
+    margin: 0 auto 3rem;
+    padding: 0 1.5rem;
+    display: grid;
+    gap: 1.5rem;
+}
+
+/* os <br> do HTML são escondidos; o layout vem do grid abaixo */
+form br {
+    display: none;
+}
+
+fieldset {
+    margin: 0;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem 1.5rem;
+}
+
+legend {
+    grid-column: 1 / -1;
+    padding: 0 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+label {
+    display: block;
+    align-self: end;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+input {
+    width: 100%;
+    padding: 0.65rem 0.85rem;
+    font: inherit;
+    color: var(--text);
+    background: var(--bg-input);
+    border: 1px solid var(--border-strong);
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input::placeholder {
+    color: #5b6475;
+}
+
+input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+input:invalid:not(:placeholder-shown) {
+    border-color: #f87171;
+}
+
+/* calendário do input date em tema escuro */
+input[type="date"] {
+    color-scheme: dark;
+}
+
+/* seletor de cor */
+input[type="color"] {
+    height: 44px;
+    padding: 4px;
+    cursor: pointer;
+}
+
+/* slider */
+input[type="range"] {
+    padding: 0;
+    height: 44px;
+    background: transparent;
+    border: none;
+    accent-color: var(--accent);
+    cursor: pointer;
+}
+
+input[type="range"]:focus {
+    box-shadow: none;
+}
+
+/* ---------- Botão ---------- */
+button {
+    justify-self: start;
+    padding: 0.8rem 2rem;
+    font: inherit;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: #041018;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 0 20px var(--accent-glow);
+    transition: transform 0.15s, box-shadow 0.15s, filter 0.15s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px var(--accent-glow);
+    filter: brightness(1.08);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 800px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem 1.25rem;
+    }
+
+    main {
+        grid-template-columns: 1fr;
+    }
+
+    section,
+    aside,
+    main footer {
+        grid-column: 1;
+        grid-row: auto;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.campo-com-icone {
+    position: relative;
+}
+
+.campo-com-icone input {
+    padding-left: 3rem;
+}
+
+.campo-com-icone::before {
+    content: '';
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    background-image: url('data:image/svg+xml,...');
+}
+
+.botao {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.875rem 2rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.botao-primario {
+    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+    color: white;
+}
+
+.botao-primario:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
+}
