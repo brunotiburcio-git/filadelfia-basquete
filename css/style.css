@@ -15,7 +15,7 @@
     --border-strong: #2d3b55;
 
     --text: #e5e9f0;
-    --text-muted: #8b95a8;
+    --text-muted: #b7c4d8;
 
     --accent: #22d3ee;
     /* ciano */
@@ -234,6 +234,21 @@ svg {
     max-width: 100%;
     height: auto;
     display: block;
+}
+
+.imagem-link {
+    display: inline-block;
+    max-width: 100%;
+    text-decoration: none;
+}
+
+.imagem-link img {
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.imagem-link:hover img {
+    opacity: 0.9;
+    transform: translateY(-1px);
 }
 
 /* ---------- Vídeo (iframe) ---------- */
