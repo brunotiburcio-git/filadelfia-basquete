@@ -157,13 +157,25 @@ main footer {
 }
 
 /* ---------- Títulos e texto ---------- */
+h1,
+h2,
+h3,
+h4 {
+    margin: 0 0 0.3rem;
+    line-height: 1.2;
+}
+
 h2 {
-    margin: 0 0 0.75rem;
     font-size: 1.4rem;
     font-weight: 600;
     color: #fff;
     position: relative;
     padding-left: 0.85rem;
+}
+
+h3,
+h4 {
+    font-size: 1.05rem;
 }
 
 /* barra de acento à esquerda do título */
@@ -182,6 +194,26 @@ article h2 {
     font-size: 1.15rem;
 }
 
+.titulo-com-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin: 0 0 0.75rem;
+}
+
+.titulo-com-link a {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.titulo-com-link a:hover {
+    text-decoration: underline;
+}
+
 p {
     margin: 0 0 0.75rem;
     color: var(--text-muted);
@@ -189,6 +221,14 @@ p {
 
 p:last-child {
     margin-bottom: 0;
+}
+
+img,
+iframe,
+svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
 
 /* ---------- Vídeo (iframe) ---------- */
@@ -324,20 +364,42 @@ button:active {
 /* ---------- Responsivo ---------- */
 @media (max-width: 800px) {
     header {
-        flex-direction: column;
-        align-items: flex-start;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
         padding: 1rem 1.25rem;
+    }
+
+    header strong,
+    header span {
+        justify-self: start;
+    }
+
+    main,
+    form {
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
 
     main {
         grid-template-columns: 1fr;
+        margin-top: 1.5rem;
     }
 
     section,
     aside,
+    article,
     main footer {
         grid-column: 1;
         grid-row: auto;
+    }
+
+    fieldset {
+        grid-template-columns: 1fr;
+    }
+
+    button {
+        width: 100%;
     }
 }
 
