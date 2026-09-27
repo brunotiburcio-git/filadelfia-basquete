@@ -64,14 +64,19 @@ header {
     position: sticky;
     top: 0;
     z-index: 10;
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-    gap: 1rem;
     padding: 1rem 2rem;
     background: rgba(11, 15, 25, 0.85);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border);
+}
+
+.brand-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    max-width: 1100px;
+    margin: 0 auto;
 }
 
 header strong {
