@@ -228,6 +228,17 @@ p:last-child {
     margin-bottom: 0;
 }
 
+ul,
+ol {
+    margin: 0.25rem 0 0.75rem 0.75rem;
+    padding-left: 1rem;
+}
+
+li {
+    margin-bottom: 0.35rem;
+    padding-left: 0;
+}
+
 img,
 iframe,
 svg {
