@@ -284,6 +284,12 @@ form {
     gap: 1.5rem;
 }
 
+form.formulario-apoio {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+}
+
 /* os <br> do HTML são escondidos; o layout vem do grid abaixo */
 form br {
     display: none;
