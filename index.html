@@ -7,7 +7,6 @@
     <title>Filadelfia Basquete</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
     <header>
         <div class="brand-wrap">
@@ -113,24 +112,26 @@
                 <li>Divulgando o projeto em suas redes sociais e incentivando a participação de novos alunos.</li>
             </ul>
             <br>
-            <form class="formulario-apoio"
-                action="https://script.google.com/macros/s/AKfycbzGuZEWXSaG2pGu_ZJASKbecvg7ZKc3jRYQ15ff2vWfXaGg7FmsYo_qnAasQejXYTSN/exec"
-                method="post" target="_blank">
+            <form class="formulario-apoio" id="form-apoio">
                 <fieldset>
                     <legend>Quem é você?</legend>
                     <p>Preencha o formulário abaixo para nos ajudar a identificar quem está contribuindo ao projeto</p>
                     <label for="nome">Nome Completo:</label>
-                    <input type="text" id="nome" name="nome" required>
+                    <input type="text" id="nome" name="nome" minlength="3" maxlength="100" required>
                     <label for="email">E-mail:</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="email" maxlength="254" required>
                     <label for="telefone">Telefone:</label>
-                    <input type="tel" id="telefone" name="telefone" pattern="([0-9]{2}\)[0-9]{5}-[0-9]{4}"
+                    <input type="tel" id="telefone" name="telefone" pattern="\([0-9]{2}\) ?[0-9]{4,5}-?[0-9]{4}"
                         placeholder="(00) 00000-0000" title="Formato: (00) 00000-0000">
                     <label for="nascimento">Data de Nascimento:</label>
-                    <input type="date" id="nascimento" name="nascimento" min="01-01-1900" max="31-12-2026"
+                    <input type="date" id="nascimento" name="nascimento" min="1900-01-01" max="2026-12-31"
                         placeholder="dd-mm-aaaa">
                     <label for="idade">Idade do aluno beneficiado (se aplicável):</label>
-                    <input type="number" id="idade" name="idade" min="10" max="40">
+                    <input type="number" id="idade" name="idade" min="10" max="40" step="1">
+                    <div style="position:absolute; left:-9999px;" aria-hidden="true">
+                        <label for="site">Não preencha este campo:</label>
+                        <input type="text" id="site" name="site" tabindex="-1" autocomplete="off">
+                    </div>
                     <button type="submit">Enviar</button>
                 </fieldset>
             </form>
@@ -170,8 +171,38 @@
         </footer>
     </main>
 
-</html>
+<script>
+  // Valores públicos (seguros por causa do RLS). NUNCA colocar a sb_secret aqui.
+  const SUPABASE_URL = "https://zwhynmxrskwthedygxmm.supabase.co";
+  const SUPABASE_KEY = "sb_publishable_-el_dlrsN__lkxZUiAGExw_o-WUWKtN";
 
+  document.getElementById("form-apoio").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const f = e.target;
+    if (f.site.value) return; // robô: descarta em silêncio
+    const dados = {
+      nome: f.nome.value,
+      email: f.email.value,
+      telefone: f.telefone.value || null,
+      nascimento: f.nascimento.value || null,
+      idade: f.idade.value ? Number(f.idade.value) : null,
+    };
+
+    const r = await fetch(`${SUPABASE_URL}/rest/v1/inscricoes`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`,
+        Prefer: "return=minimal",
+      },
+      body: JSON.stringify(dados),
+    });
+
+    if (r.ok) { alert("Enviado com sucesso! Obrigado."); f.reset(); }
+    else { alert("Erro ao enviar. Tente novamente."); }
+  });
+</script>
 </body>
 
 </html>
